@@ -33,5 +33,6 @@ public abstract class MessageBody implements Serializable {
 	public void setOwner(Owner owner) { this.owner = owner; }
 
 	public abstract String[] getAttributes();
+	public abstract boolean isComplete();
 	public abstract void paintMessage(Graphics g, PageSettings pageSetting);
 }

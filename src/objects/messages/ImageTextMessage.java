@@ -15,7 +15,7 @@ public class ImageTextMessage extends MessageBody implements Serializable {
 	
 	private ArrayList<ImageTextItem> messageContent = new ArrayList<ImageTextItem>();
 
-	public ImageTextMessage(MessageStyle messageStyle) {
+	public ImageTextMessage() {
 		super(MessageStyle.IMAGE_TEXT_CONTENT);
 	}
 	
@@ -23,7 +23,18 @@ public class ImageTextMessage extends MessageBody implements Serializable {
 		messageContent.add(new ImageTextItem(itemstyle, content));
 	}
 	
+	public String delete() { return delete(messageContent.size() - 1); }
+	public String delete(int index) {
+		if(messageContent.size() == 0) { return null; }
+		return messageContent.remove(index).toString();
+	}
+	
 	public String[] getAttributes() { return new String[] {"Content"}; }
+
+	public boolean isComplete() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	public void paintMessage(Graphics g, PageSettings pageSetting) {
 		Point datum = pageSetting.updateDatum(0);
