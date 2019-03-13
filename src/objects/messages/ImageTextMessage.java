@@ -1,7 +1,6 @@
 package objects.messages;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,8 +18,8 @@ public class ImageTextMessage extends MessageBody implements Serializable {
 		super(MessageStyle.IMAGE_TEXT_CONTENT);
 	}
 	
-	public void insert(String content, ItemStyle itemstyle) {
-		messageContent.add(new ImageTextItem(itemstyle, content));
+	public boolean insert(String content, ItemStyle itemstyle) {
+		return messageContent.add(new ImageTextItem(itemstyle, content));
 	}
 	
 	public String delete() { return delete(messageContent.size() - 1); }
@@ -32,13 +31,19 @@ public class ImageTextMessage extends MessageBody implements Serializable {
 	public String[] getAttributes() { return new String[] {"Content"}; }
 
 	public boolean isComplete() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub4
 		return false;
 	}
 
 	public void paintMessage(Graphics g, PageSettings pageSetting) {
-		Point datum = pageSetting.updateDatum(0);
+		//Point datum = pageSetting.updateDatum(0);
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean setAttributes(String[] attributes) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
 

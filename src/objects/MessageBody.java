@@ -15,6 +15,7 @@ public abstract class MessageBody implements Serializable {
 	private String portrait;
 	private String sendingTime;
 	private Owner owner;
+	private String remark;
 	private final MessageStyle messageStyle;
 	
 	public MessageBody(MessageStyle messageStyle) {
@@ -24,15 +25,18 @@ public abstract class MessageBody implements Serializable {
 	public String getNickname() { return nickname; }
 	public String getPortrait() { return portrait; }
 	public String getSendingTime() { return sendingTime; }
+	public String getRemark() { return remark; }
 	public Owner getOwner() { return owner; }
 	public MessageStyle getMessageStyle() { return messageStyle; }
 
 	public void setNickname(String nickname) { this.nickname = nickname; }
 	public void setPortrait(String portrait) { this.portrait = portrait; }
 	public void setSendingTime(String sendingTime) { this.sendingTime = sendingTime; }
+	public void setRemark(String remark) { this.remark = remark; }
 	public void setOwner(Owner owner) { this.owner = owner; }
 
-	public abstract String[] getAttributes();
 	public abstract boolean isComplete();
+	public abstract String[] getAttributes();
+	public abstract boolean setAttributes(String[] attributes);
 	public abstract void paintMessage(Graphics g, PageSettings pageSetting);
 }

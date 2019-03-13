@@ -1,11 +1,14 @@
 package io;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import tools.RegularMatch;
 
@@ -33,11 +36,29 @@ public class fileIO {
         }
 	}
 	
+	public static String[] fileInputList(String filePath) {
+		File file = new File(filePath);
+		ArrayList<String> arrayList = new ArrayList<String>();
+		try {
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String currentLine = null;
+			while((currentLine = bufferedReader.readLine()) != null && !Thread.currentThread().isInterrupted()) {
+				arrayList.add(currentLine);
+			}
+			bufferedReader.close();
+			fileReader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return arrayList.toArray(new String[0]);
+	}
+	
 	@SuppressWarnings("static-access")
 	public static void copyDir(String sourcePath, String newPath) throws Exception {
 		File file = new File(sourcePath);
 		String[] filePath = file.list();
-		System.out.println(sourcePath);
 
 		if (!(new File(newPath)).exists()) {
 			(new File(newPath)).mkdir();
